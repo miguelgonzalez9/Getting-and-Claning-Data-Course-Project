@@ -49,12 +49,12 @@ kurtosis(): kurtosis of the frequency domain signal\
 bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
 ### Label Varible
 The label variable specifies the activity that the subject was doing. It is a factor variable.\
-1 WALKING\
-2 WALKING_UPSTAIRS\
-3 WALKING_DOWNSTAIRS\
-4 SITTING\
-5 STANDING\
-6 LAYING
+1 walking\
+2 walking_upstairs\
+3 walking_downstairs\
+4 sitting\
+5 standing\
+6 laying
 ### Subject
 Factor variable with levels 1-30, specifying the subject that performed the activity.
 ### Class

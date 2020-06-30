@@ -8,18 +8,18 @@ url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR
 download.file(url, destfile = "./pojdata.zip")
 
 ## Getting Test Data
-test_labels <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/test/y_test.txt")
-test_subject <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/test/subject_test.txt")
-datafile <- "/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/test/X_test.txt"
+test_labels <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/test/y_test.txt")
+test_subject <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/test/subject_test.txt")
+datafile <- "/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/test/X_test.txt"
 testraw <- fread(text = readLines(datafile), header = F)
 class <- rep("test", 2947) #Creating new variable indicaing class; test or train.
 test <-tbl_df(mutate(testraw, label = factor(test_labels), subject = factor(test_subject, levels = c(1:30)), class = class))
 
 
 ## Getting Train Data
-train_labels <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/train/y_train.txt")
-train_subject <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/train/subject_train.txt")
-df <- "/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/train/X_train.txt"
+train_labels <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/train/y_train.txt")
+train_subject <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/train/subject_train.txt")
+df <- "/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/train/X_train.txt"
 trainraw <- fread(text = readLines(df), header = F) 
 class_train <- rep("train", 7352) #Creating new variable indicaing class; test or train.
 train <- mutate(trainraw, label = factor(train_labels), subject = factor(train_subject, levels = c(1:30)), class = class_train)
@@ -32,7 +32,7 @@ test_train$class <- factor(test_train$class, levels = c("test", "train"))# Conve
 
 
 ## Adding features names.
-features <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/features.txt")
+features <- readLines("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/features.txt")
 features <- features %>%  
         sub(pattern = "[0-9]* +", "", .) %>% 
         gsub("\\()", "", .)
@@ -42,7 +42,7 @@ colnames(test_train) <- c(features, "label", "subject", "class")
 View(test_train[,461:502])
 
 ## Adding descriptive Acvtivity Names.
-activity <- read.table("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/activity_labels.txt")[,2]
+activity <- read.table("/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/activity_labels.txt")[,2]
 activity <- tolower(activity)
 test_train$label <-  mapvalues(test_train$label, from = c(1:6), to = activity)# Changing level names.
 
@@ -50,7 +50,7 @@ test_train$label <-  mapvalues(test_train$label, from = c(1:6), to = activity)# 
 ## It's important to say that in the features_info.txt file the signal names fBodyAccJerkMag
 ##fBodyGyroMag and fBodyGyroJerkMag where changed to fBodyBodyAccJerkMag,fBodyBodyGyroMag 
 ## and fBodyBodyGyroJerkMag in order to match the varnames in the data.
-path <- "/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Final\ Project/UCI\ HAR\ Dataset/features_info.txt"
+path <- "/Users/miguel/Desktop/Data\ Science/Getting\ and\ Cleaning\ Data/Getting-and-Claning-Data-Course-Project/UCI\ HAR\ Dataset/features_info.txt"
 varnames <- read_lines(path, skip = 12, n_max = 17) # Reading the signal names
 varnames <- gsub("-XYZ", "", x = varnames) #Cleaning the names from unwanted characters.
 varnames <- gsub("\t", "", x = varnames)
@@ -74,7 +74,6 @@ colnames(mean) <- sub("mean", "", colnames(mean))
 std <- select(.data = test_train, grep("std", x = colnames(test_train)))
 colnames(std) <- sub("std", "", colnames(std))
 mean_std_data <- list(mean = mean,std = std)
-mean_std_data
 
 
 ## Grouping by activity and subject and summarizing by mean in both test_train and ls datasets. 

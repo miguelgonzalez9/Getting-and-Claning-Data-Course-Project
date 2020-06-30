@@ -27,7 +27,7 @@ The angle element is divided into the following variables:\
 4 (tBodyGyroJerkMean,gravityMean)\
 5 (X,gravityMean)\
 6 (Y,gravityMean)\
-7 (Z,gravityMean)\
+7 (Z,gravityMean)
 
 Each of the prevous signals, except 'angle', is divded into the following variables. Each variable is applied to X, Y and Z components of each signal.\
 mean(): Mean value\
@@ -60,5 +60,11 @@ Factor variable with levels 1-30, specifying the subject that performed the acti
 Factor variable with levels "test" and "train" indicating wheather the observation was in the test data or in the train data.
 
 ## The test_train dataset
-This dataset contains the same data from ls, the difference is that the data isn't divided into signal but it rather contains the data as a whole.\
-The list of variables can be found on the test_train_variables file.
+This dataset contains the same data from ls, the difference is that the data isn't divided into signal groups but it's rather presented as a whole.\
+The list of variables can be found on the test_train_variables file.\
+This data set contains 10299 observation and 564 variables. 
+## 'mean_std_data'
+These data set takes from the mean and std variables from 'test_train' and stores them in a list containing a dataframe with the mean variables as the first element and a dataframe with the standard deviation variables as the second element. 
+## 'avrg' and 'sum_list' Datasets
+These datasets summarise the data from the test_train and ls datasets respectively. These datasets contain the average of each variable for each label (activity) and each subject. 
+The difference is that avrg presents this as a whole like 'test_train', and 'sum_list' for each signal, like 'ls'. 

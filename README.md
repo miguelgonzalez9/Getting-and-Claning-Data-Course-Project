@@ -5,3 +5,7 @@ This file contains the code in which the Human Activity Recognition Using Smartp
 This file contains the variable names for the test_train data set. 
 ## Code Book.md
 The code book file describes the datasets created in run_analysis.R. The variables and the structure of each dataset are explained in this file. 
+## ls Folder.
+Contains a txt file for each element in the 'ls' dataset. 
+## test_train Folder
+Contains the 'test_train' data set in one txt file.

@@ -1,6 +1,7 @@
-# Code Book for Human Activity Recognition Using Smartphones Dataset 
+# Code Book for Human Activity Recognition Using Smartphones Data
 ## ls dataset
 This data set divides the Human Activity Recognition into the different signals specified in the features_info file. Each element of the list 'ls' corresponds to the data for the signals listed below. Each signal has X, Y and Z values.\
+
 1 tBodyAcc\
 2 tGravityAcc\
 3 tBodyAccJerk\
@@ -59,12 +60,12 @@ Factor variable with levels 1-30, specifying the subject that performed the acti
 ### Class
 Factor variable with levels "test" and "train" indicating wheather the observation was in the test data or in the train data.
 
-## The test_train dataset
+## The 'test_train' Dataset
 This dataset contains the same data from ls, the difference is that the data isn't divided into signal groups but it's rather presented as a whole.\
 The list of variables can be found on the test_train_variables file.\
 This data set contains 10299 observation and 564 variables. 
-## 'mean_std_data'
-These data set takes from the mean and std variables from 'test_train' and stores them in a list containing a dataframe with the mean variables as the first element and a dataframe with the standard deviation variables as the second element. 
-## 'avrg' and 'sum_list' Datasets
+## The 'mean_std_data' Dataset
+This data set takes from the mean and std variables from 'test_train' and stores them in a list containing a dataframe with the mean variables as the first element and a dataframe with the standard deviation variables as the second element. 
+## The 'avrg' and 'sum_list' Datasets
 These datasets summarise the data from the test_train and ls datasets respectively. These datasets contain the average of each variable for each label (activity) and each subject. 
 The difference is that avrg presents this as a whole like 'test_train', and 'sum_list' for each signal, like 'ls'. 

@@ -70,11 +70,13 @@ names(ls) <- c(varnames, "angle") ## Naming each signal in ls.
 ## This part of the code selects mean and std variables and creates a list called mean_std_data containig
 ## a dataframe of the mean varibales and a dataframe of std variables.
 mean <- select(.data = test_train, grep("mean[^Freq]", x = colnames(test_train)))
+m <- mean
 colnames(mean) <- sub("mean", "", colnames(mean))
 std <- select(.data = test_train, grep("std", x = colnames(test_train)))
+s <- std
 colnames(std) <- sub("std", "", colnames(std))
 mean_std_data <- list(mean = mean,std = std)
-
+msdat <- cbind.data.frame(m, s)## Getting all std and mean data in one data frame.
 
 ## Grouping by activity and subject and summarizing by mean in both test_train and ls datasets. 
 ###Sumamrizing in test_train.
